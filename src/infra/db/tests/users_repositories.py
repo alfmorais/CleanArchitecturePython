@@ -16,9 +16,6 @@ class UsersRepositorySpy:
     def select_user(self, first_name: str) -> List[Users]:
         self.select_user_attributes["first_name"] = first_name
 
-        if first_name == "Davi":
-            return []
-
         return [
             Users(23, first_name, "morgado", 43),
             Users(24, first_name, "sobrado", 12),

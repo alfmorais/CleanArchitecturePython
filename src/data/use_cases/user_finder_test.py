@@ -1,4 +1,6 @@
+from typing import List
 import pytest
+from src.domain.models.users import Users
 from src.infra.db.tests.users_repositories import UsersRepositorySpy
 from .user_finder import UserFinder
 
@@ -26,8 +28,12 @@ def test_user_finder_error_first_name_len_more_than_max_characters():
 
 
 def test_user_finder_error_first_name_not_found():
+    class UsersRepositorySpyError(UsersRepositorySpy):
+        def select_user(self, first_name: str) -> List[Users]:
+            return []
+
     first_name = "Davi"
-    users_repository = UsersRepositorySpy()
+    users_repository = UsersRepositorySpyError()
     user_finder = UserFinder(users_repository)
 
     with pytest.raises(Exception) as error:
