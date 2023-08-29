@@ -39,7 +39,7 @@ def test_user_register_error_first_name_is_not_alpha():
             age,
         )
 
-    assert error.value.args[0] == "Nome invalido para a busca"
+    assert error.value.message == "Nome invalido para a cadastro"
 
 
 def test_user_register_error_first_name_len_more_than_max_characters():
@@ -57,7 +57,7 @@ def test_user_register_error_first_name_len_more_than_max_characters():
             age,
         )
 
-    assert error.value.args[0] == "Nome muito grande para a busca"
+    assert error.value.message == "Nome muito grande para a cadastro"
 
 
 def test_user_register_error_last_name_is_not_alpha():
@@ -75,7 +75,7 @@ def test_user_register_error_last_name_is_not_alpha():
             age,
         )
 
-    assert error.value.args[0] == "Nome invalido para a busca"
+    assert error.value.message == "Nome invalido para a cadastro"
 
 
 def test_user_register_error_last_name_len_more_than_max_characters():
@@ -93,7 +93,7 @@ def test_user_register_error_last_name_len_more_than_max_characters():
             age,
         )
 
-    assert error.value.args[0] == "Nome muito grande para a busca"
+    assert error.value.message == "Nome muito grande para a cadastro"
 
 
 def test_user_register_error_validate_age():
@@ -111,4 +111,4 @@ def test_user_register_error_validate_age():
             age,
         )
 
-    assert error.value.args[0] == "Idade precisa ser um número"
+    assert error.value.message == "Idade precisa ser um número"

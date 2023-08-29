@@ -13,7 +13,7 @@ def test_user_finder_error_first_name_is_not_alpha():
     with pytest.raises(Exception) as error:
         user_finder.find(first_name)
 
-    assert error.value.args[0] == "Nome invalido para a busca"
+    assert error.value.message == "Nome invalido para a busca"
 
 
 def test_user_finder_error_first_name_len_more_than_max_characters():
@@ -24,7 +24,7 @@ def test_user_finder_error_first_name_len_more_than_max_characters():
     with pytest.raises(Exception) as error:
         user_finder.find(first_name)
 
-    assert error.value.args[0] == "Nome muito grande para a busca"
+    assert error.value.message == "Nome muito grande para a busca"
 
 
 def test_user_finder_error_first_name_not_found():
@@ -39,7 +39,7 @@ def test_user_finder_error_first_name_not_found():
     with pytest.raises(Exception) as error:
         user_finder.find(first_name)
 
-    assert error.value.args[0] == "Usuario não encontrado"
+    assert error.value.message == "Usuario não encontrado"
 
 
 def test_user_finder_success():
@@ -51,4 +51,4 @@ def test_user_finder_success():
 
     assert response["type"] == "Users"
     assert response["count"] == 2
-    assert response["attributes"] != []
+    assert response["attributes"]
