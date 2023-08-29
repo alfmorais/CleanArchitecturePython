@@ -2,6 +2,7 @@
 from typing import Dict, List
 from src.domain.use_cases.users_finder import UserFinderInterface
 from src.data.interfaces.users_repositories import UsersRepositoryInterface
+from src.domain.models.users import Users
 
 
 class UserFinder(UserFinderInterface):
@@ -21,7 +22,7 @@ class UserFinder(UserFinderInterface):
         if len(first_name) > 18:
             raise Exception("Nome muito grande para a busca")
 
-    def __search_user(self, first_name: str) -> List:
+    def __search_user(self, first_name: str) -> List[Users]:
         users = self.__users_repository.select_user(first_name)
 
         if users == []:
@@ -30,7 +31,7 @@ class UserFinder(UserFinderInterface):
         return users
 
     @classmethod
-    def __format_response(cls, users: list) -> Dict:
+    def __format_response(cls, users: List[Users]) -> Dict:
         attributes = []
 
         for user in users:
